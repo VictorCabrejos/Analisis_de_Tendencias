@@ -1,0 +1,1207 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Resolucion De A?o Nuevo}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{Resolución de Año Nuevo}\label{resoluciuxf3n-de-auxf1o-nuevo}
+
+    ¿Hay más búsquedas en Google de los términos: \texttt{diet} (dieta),
+\texttt{gym} (gimnasio) y \texttt{finance} (finanzas) en Enero cuando
+todos estamos tratando de renovarnos con el inicio de un nuevo año?
+
+Este proyecto busca verificar
+\texttt{Los\ Datos\ de\ Tendencia\ de\ Google} obtenidos de la pagina
+\texttt{Google\ Trends} sobre la busqueda de las siguientes palabras:
+\texttt{diet}, \texttt{gym} y \texttt{finance}. Y se analizara cómo
+estas busquedas varían con el tiempo.
+
+Estos datos pueden ser encontrados
+\href{https://trends.google.com/trends/explore?date=all\&q=diet,gym,finance}{aquí}.
+También se puede descargar los datos en formato \texttt{.csv}, para que
+cada persona pueda importar estos datos en sus propios entornos
+virtuales de Python y puedan realizar su propio análisis.
+
+En este proyecto primero se obtendrán los datos, luego se visualizarán,
+y finalmente se aprenderá acerca de \texttt{las\ Tendencias} y
+\texttt{la\ Estacionalidad} de estos datos. El énfasis se centrará en
+una exploración visual.
+
+Entonces la pregunta sigue siendo: ¿Podría haber más búsquedas de estos
+palabras en Enero cuando todos estamos tratando de empezar un nuevo año?
+
+    \subsection{Importando los Datos}\label{importando-los-datos}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}182}]:} \PY{c+c1}{\PYZsh{} Primero hay que importar los siguientes paquetes}
+          \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+          \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+          \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+          \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
+          \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+          \PY{n}{sns}\PY{o}{.}\PY{n}{set}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{itemize}
+\tightlist
+\item
+  Importando los datos descargardos y verificando las primeras filas:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}183}]:} \PY{c+c1}{\PYZsh{} Ya que este archivo viene con un encabezado extra, }
+          \PY{c+c1}{\PYZsh{} Usaremos skiprows para no incluirlo}
+          \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{data/multiTimeline.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{skiprows} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+          \PY{n}{df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}183}]:}      Month  diet: (Worldwide)  gym: (Worldwide)  finance: (Worldwide)
+          0  2004-01                100                31                    48
+          1  2004-02                 75                26                    49
+          2  2004-03                 67                24                    47
+          3  2004-04                 70                22                    48
+          4  2004-05                 72                22                    43
+\end{Verbatim}
+            
+    \begin{itemize}
+\tightlist
+\item
+  Usando el método \texttt{.info\ ()} para verificar los tipos de datos,
+  número de filas y más:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}184}]:} \PY{n}{df}\PY{o}{.}\PY{n}{info}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 168 entries, 0 to 167
+Data columns (total 4 columns):
+Month                   168 non-null object
+diet: (Worldwide)       168 non-null int64
+gym: (Worldwide)        168 non-null int64
+finance: (Worldwide)    168 non-null int64
+dtypes: int64(3), object(1)
+memory usage: 5.3+ KB
+
+    \end{Verbatim}
+
+    \textbf{Resumen:}
+
+\begin{itemize}
+\tightlist
+\item
+  Se importaron los datos de las tendencias de Google y fueron revisadas
+  brevemente;
+\end{itemize}
+
+\textbf{A Continuacion:}
+
+\begin{itemize}
+\tightlist
+\item
+  Preparacion de datos y poniendolos en la forma deseada para el
+  análisis.
+\end{itemize}
+
+    \subsection{Preparacion de Datos}\label{preparacion-de-datos}
+
+    \begin{itemize}
+\tightlist
+\item
+  Cambiamos el nombre de las columnas de \texttt{df} para que no tengan
+  espacios:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}185}]:} \PY{n}{df}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mes}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dieta}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gimnasio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{finanzas}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{n}{df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}185}]:}        mes  dieta  gimnasio  finanzas
+          0  2004-01    100        31        48
+          1  2004-02     75        26        49
+          2  2004-03     67        24        47
+          3  2004-04     70        22        48
+          4  2004-05     72        22        43
+\end{Verbatim}
+            
+    \begin{itemize}
+\item
+  Convertimos la columna \texttt{month} en un tipo de
+  \texttt{datos\ de\ fecha\ y\ hora} (to\_datetime). Luego hacemos que
+  esa columna sea el nuevo índice del DataFrame;
+\item
+  Hay que tener cuidado cuando usen \texttt{.set\_index()} porque crea
+  un nuevo DataFrame en vez de alterar el original. Para poder alterar
+  el original tienen que agregarle el parametro \texttt{inplace=True};
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}186}]:} \PY{n}{df}\PY{o}{.}\PY{n}{mes} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{to\PYZus{}datetime}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{mes}\PY{p}{)}
+          \PY{n}{df}\PY{o}{.}\PY{n}{set\PYZus{}index}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mes}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}187}]:} \PY{n}{df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}187}]:}             dieta  gimnasio  finanzas
+          mes                                  
+          2004-01-01    100        31        48
+          2004-02-01     75        26        49
+          2004-03-01     67        24        47
+          2004-04-01     70        22        48
+          2004-05-01     72        22        43
+\end{Verbatim}
+            
+    \begin{itemize}
+\tightlist
+\item
+  Ahora es el momento de explorar este DataFrame visualmente.
+\end{itemize}
+
+    \subsection{Un Poco de Análisis Exploratorio de
+Datos}\label{un-poco-de-anuxe1lisis-exploratorio-de-datos}
+
+    \begin{itemize}
+\tightlist
+\item
+  Usando un método integrado de visualización de \texttt{pandas} para
+  trazar los datos como gráficos de 3 líneas en una sola figura (uno
+  para cada columna):
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}188}]:} \PY{c+c1}{\PYZsh{} Vamos a hacer que nuestro grafico se vea mejor}
+          \PY{c+c1}{\PYZsh{} Usando los parametros: figsize, linewidth, fontsize }
+          \PY{n}{df}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{;}
+          
+          \PY{c+c1}{\PYZsh{} Cambiamos la etiqueta del eje\PYZhy{}x a \PYZdq{}Año\PYZdq{}}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Año}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_18_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{itemize}
+\tightlist
+\item
+  Ahora vamos a trazar solo la columna 'dieta' como una serie temporal:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}189}]:} \PY{c+c1}{\PYZsh{} Vamos a hacer que nuestro grafico se vea mejor}
+          \PY{c+c1}{\PYZsh{} Usando los parametros: figsize, linewidth, fontsize }
+          \PY{n}{df}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dieta}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{;}
+          
+          \PY{c+c1}{\PYZsh{} Cambiamos la etiqueta del eje\PYZhy{}x a \PYZdq{}Año\PYZdq{}}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Año}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_20_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    ** Nota: ** parece que hay \texttt{tendencias} y componentes
+\texttt{estacionales} en estas series temporales. Lo primero que podemos
+notar es que hay \texttt{Estacionalidad}, en cada Enero (comienzo de
+año) hay un salto alto en la grafica. Pero tambien notamos que hay una
+\texttt{Tendencia} que empieza desde arriba, va bajando y luego sube un
+poco.
+
+    \textbf{Resumen:}
+
+\begin{itemize}
+\tightlist
+\item
+  Se importaron los datos de las tendencias de Google y fueron revisados
+  brevemente;
+\item
+  Se ha discutido los datos y se convirtieron a la forma deseada para
+  prepararlos para el análisis.
+\item
+  Se ha verificado la serie temporal visualmente.
+\end{itemize}
+
+\textbf{A continuacion:}
+
+\begin{itemize}
+\tightlist
+\item
+  Se identificara las tendencias en la serie de tiempo.
+\end{itemize}
+
+    Para obtener más información sobre Pandas, pueden ver el curso de la
+pagina DataCamp:
+\href{https://www.datacamp.com/tracks/data-manipulation-with-python}{Manipulación
+de datos usando Python}. Y para obtener más información sobre
+manipulacion de series de tiempo con Pandas, pueden ver el curso:
+\href{https://www.datacamp.com/courses/manipulating-time-series-data-in-python}{Manipulando
+Datos en Series de Tiempo usando Python}.
+
+Si estás disfrutando de esta sesión, visita mi pagina de Facebook
+\href{https://www.facebook.com/pythonfordatascience}{Python Programming
+\& Data Science} y sígueme en Twitter:
+{[}@vmc62usa{]}(https://twitter.com/vmc62usa)
+
+    \subsection{Hay alguna Tendencia?}\label{hay-alguna-tendencia}
+
+    Hay varias maneras de pensar sobre la identificación de tendencias en
+series de tiempo. Una manera popular es tomar el
+\texttt{Promedio\ Móvil}, es decir, para cada punto de tiempo se toma el
+promedio de los puntos de cada extremo (el número de puntos es
+especificado por el \emph{tamaño de ventana}, el cual debemos elegir).
+
+    \subsubsection{Visualizando el Promedio
+Móvil:}\label{visualizando-el-promedio-muxf3vil}
+
+    \begin{itemize}
+\tightlist
+\item
+  Trazamos el \texttt{Promedio\ Móvil} de \texttt{dieta} utilizando los
+  métodos integrados de \texttt{pandas}.
+\item
+  ¿Qué tamaño de ventana tiene sentido usar?
+\end{itemize}
+
+    Tomaremos el Promedio móvil de todo un año porque eso tiende a arreglar
+la Estacionalidad. Eso significa que usaremos un
+\texttt{tamaño\ de\ ventana} de 12 meses
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}190}]:} \PY{c+c1}{\PYZsh{} Creamos un nuevo DataFrame llamado \PYZsq{}dieta\PYZsq{} usando de la columna \PYZsq{}dieta\PYZsq{} de nuestro DataFrame original}
+          \PY{n}{dieta} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dieta}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+          
+          \PY{c+c1}{\PYZsh{} Luego tomamos el Promedio Movil de 12 meses y lo trazamos}
+          \PY{n}{dieta}\PY{o}{.}\PY{n}{rolling}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{)}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{;}
+          
+          \PY{c+c1}{\PYZsh{} Cambiamos la etiqueta del eje\PYZhy{}x a \PYZdq{}Año\PYZdq{}}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Año}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_29_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Removimos la mayoria de la Estacionalidad y podemos ver claramente la
+\texttt{Tendencia} de la palabra \texttt{dieta} a traves de los años.
+
+    \begin{itemize}
+\tightlist
+\item
+  Ahora trazamos el Promedio Móvil de \texttt{gimnasio} utilizando los
+  métodos integrados de pandas.
+\item
+  Y de nuevo usaremos un tamaño de ventana de 12 meses
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}191}]:} \PY{c+c1}{\PYZsh{} Creamos un nuevo DataFrame llamado \PYZsq{}gimnasio\PYZsq{} usando de la columna \PYZsq{}gimnasio\PYZsq{} de nuestro DataFrame original}
+          \PY{n}{gimnasio} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gimnasio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+          
+          \PY{c+c1}{\PYZsh{} Luego tomamos el Promedio Movil de 12 meses y lo trazamos}
+          \PY{n}{gimnasio}\PY{o}{.}\PY{n}{rolling}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{)}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{;}
+          
+          \PY{c+c1}{\PYZsh{} Cambiamos la etiqueta del eje\PYZhy{}x a \PYZdq{}Año\PYZdq{}}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Año}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_32_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    De nuevo, removimos la mayoria de la Estacionalidad y podemos ver
+claramente la \texttt{Tendencia} de la palabra \texttt{gimnasio} a
+traves de los años. Claramente podemos ver un incremento en la busqueda
+de esta palabra.
+
+    \begin{itemize}
+\tightlist
+\item
+  Ahora trazamos las tendencias de \texttt{gimnasio} y \texttt{dieta} en
+  una sola grafica:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}192}]:} \PY{c+c1}{\PYZsh{} Vamos a concatenar (unir) ambos DataFrames usando el metodo pd.concat}
+          \PY{c+c1}{\PYZsh{} Queremos concatenarlos como Columnas asi que usaremos el parametro axis=1}
+          
+          \PY{n}{df\PYZus{}rm} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{p}{[}\PY{n}{dieta}\PY{o}{.}\PY{n}{rolling}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{)}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{gimnasio}\PY{o}{.}\PY{n}{rolling}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{)}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+          \PY{n}{df\PYZus{}rm}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{;}
+          
+          \PY{c+c1}{\PYZsh{} Cambiamos la etiqueta del eje\PYZhy{}x a \PYZdq{}Año\PYZdq{}}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Año}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_35_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Ahora que los tenemos en el mismo eje, removiendo la
+\texttt{Estacionalidad}, podemos ver que atraves de los años la palabra
+\texttt{dieta} tiene cierta estacionalidad (sube y baja), mientras que
+la busqueda de la palabra \texttt{gimnasio} se va incrementando.
+
+    \begin{itemize}
+\tightlist
+\item
+  Ahora que identificamos las tendencias, vamos a concentrarnos en la
+  \texttt{Estacionalidad}
+\end{itemize}
+
+    \subsection{Patrones de
+Estacionalidad}\label{patrones-de-estacionalidad}
+
+    Se puede eliminar la \texttt{tendencia} de una serie temporal para
+investigar su \texttt{estacionalidad}. Es decir, la
+\texttt{repetitividad} de nuestra serie de tiempo. En nuestra grafica
+original pudimos ver que nuestro trazado \texttt{oscilaba} de arriba a
+abajo.
+
+\begin{itemize}
+\item
+  Una manera de eliminar la tendencia es es restando la tendencia
+  calculada anteriormente (su Promedio Móvil) de los datos originales.
+  Sin embargo, este nuevo calculo dependerá de la cantidad de puntos de
+  datos sobre los que se haya promediado.
+\item
+  Otra forma de eliminar la tendencia se llama \textbf{diferenciación},
+  donde se observa la diferencia entre los puntos de datos sucesivos
+  (\texttt{diferenciación\ de\ primer\ orden}).
+\end{itemize}
+
+    \subsubsection{Diferenciacion de Primer
+Orden}\label{diferenciacion-de-primer-orden}
+
+    \begin{itemize}
+\tightlist
+\item
+  Usamos \texttt{pandas} para calcular y trazar la diferencia de primer
+  orden de la serie \texttt{dieta}:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}193}]:} \PY{c+c1}{\PYZsh{} Usamos el metodo pd.diff()}
+          
+          \PY{n}{dieta}\PY{o}{.}\PY{n}{diff}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{;}
+          
+          \PY{c+c1}{\PYZsh{} Cambiamos la etiqueta del eje\PYZhy{}x a \PYZdq{}Año\PYZdq{}}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Año}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Ahora que removimos la mayor parte de la \texttt{tendencia}, es decir,
+podemos ver que la serie esta centrada alrededor de 0 (no se ve la
+tendencia que vimos anteriormente). Y aun mas importante es notar que
+los \texttt{picos\ en\ la\ grafica} en \texttt{Enero} (comienzos de año)
+son mucho mas evidentes ahora. Cada Enero hay una salto tremendo de 20\%
+o mas en la busqueda de la palabra \texttt{dieta}.
+
+    \textbf{Nota:} También se puede realizar una
+\texttt{diferenciación\ de\ segundo\ orden} si la tendencia aún no se
+elimina por completo. Si desean mas informacion sobre
+\texttt{diferenciacion} pueden encontrarlo
+\href{https://www.otexts.org/fpp/8/1}{aquí}.
+
+\begin{itemize}
+\tightlist
+\item
+  La \textbf{diferenciación} es muy útil para convertir una
+  \textbf{serie temporal} en una \textbf{serie temporal estacionaria}.
+  Aquí no profundizaremos mucho en esto, pero una
+  \texttt{serie\ temporal\ estacionaria} es aquella cuyas propiedades
+  estadísticas (como su \textbf{Promedio} y su \textbf{Variancia}) no
+  cambian con el tiempo. Las \textbf{series temporales estacionarias}
+  son útiles porque muchos métodos de pronóstico de series de tiempo se
+  basan en la suposición de que la serie temporal es aproximadamente
+  estacionaria.
+\end{itemize}
+
+    \textbf{Resumen:}
+
+\begin{itemize}
+\tightlist
+\item
+  Se importaron los datos de las tendencias de Google y fueron revisados
+  brevemente;
+\item
+  Se ha discutido los datos y se convirtieron a la forma deseada para
+  prepararlos para el análisis.
+\item
+  Se ha verificado la serie temporal visualmente.
+\item
+  Se ha identificado tendencias de la serie temporal.
+\item
+  Se ha usado la diferenciación de primer orden de series de tiempo.
+\end{itemize}
+
+\textbf{A continuacion:}
+
+\begin{itemize}
+\tightlist
+\item
+  Se analizara la periodicidad de la serie de tiempo observando su
+  función de autocorrelación;
+\item
+  Pero antes: un breve desvío para hablar sobre \textbf{correlación.}
+\end{itemize}
+
+    \subsubsection{Periodicidad y
+Autocorrelación}\label{periodicidad-y-autocorrelaciuxf3n}
+
+    Una serie temporal es \textbf{\emph{periódica}} si se repite a
+intervalos igualmente espaciados, por ejemplo, cada 12 meses. Otra forma
+de pensar en esto es que si la serie tiene un máximo en algún lugar,
+tendrá un máximo de 12 meses después, y si tiene un valle en alguna
+parte, también tendrá un valle 12 meses después de eso.
+
+\begin{itemize}
+\item
+  Otra forma de pensar sobre esto es que la serie de tiempo está
+  \textbf{\emph{correlacionada}} con ella misma pero adelantada en 12
+  meses.
+\item
+  El concepto de \textbf{\emph{autocorrelación}} captura la correlación
+  de una serie de tiempo con su versión adelantada.
+\item
+  Primero, recordemos que es \textbf{correlación}:
+\end{itemize}
+
+    \subsubsection{Correlación}\label{correlaciuxf3n}
+
+    El coeficiente de correlación de dos variables capta que tan linearmente
+relacionadas están:
+
+    \begin{itemize}
+\tightlist
+\item
+  Importamos el conjunto de datos de la flor Iris del paquete
+  \texttt{scikit-learn}, luego lo convertimos en un DataFrame, y vemos
+  las primeras filas:
+\end{itemize}
+
+    
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}194}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn} \PY{k}{import} \PY{n}{datasets}
+          \PY{n}{iris} \PY{o}{=} \PY{n}{datasets}\PY{o}{.}\PY{n}{load\PYZus{}iris}\PY{p}{(}\PY{p}{)}
+          \PY{n}{df\PYZus{}iris} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{data}\PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{c\PYZus{}}\PY{p}{[}\PY{n}{iris}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{data}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{iris}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{target}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{p}{,}
+                               \PY{n}{columns}\PY{o}{=} \PY{n}{iris}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{feature\PYZus{}names}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{+} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{target}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+          \PY{n}{df\PYZus{}iris}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}194}]:}    sepal length (cm)  sepal width (cm)  petal length (cm)  petal width (cm)  \textbackslash{}
+          0                5.1               3.5                1.4               0.2   
+          1                4.9               3.0                1.4               0.2   
+          2                4.7               3.2                1.3               0.2   
+          3                4.6               3.1                1.5               0.2   
+          4                5.0               3.6                1.4               0.2   
+          
+             target  
+          0     0.0  
+          1     0.0  
+          2     0.0  
+          3     0.0  
+          4     0.0  
+\end{Verbatim}
+            
+    \begin{itemize}
+\tightlist
+\item
+  Utilizando \texttt{pandas} o \texttt{seaborn} para construir un
+  diagrama de dispersión de \texttt{sepal\ length} (longitud del sépalo
+  de la flor) vs. \texttt{sepal\ width} (ancho del sépalo de la flor), y
+  coloreado segun el \texttt{target} (objetivo - que es la especie de
+  flor):
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}195}]:} \PY{c+c1}{\PYZsh{} Primero sin color}
+          \PY{c+c1}{\PYZsh{} Usando Seaborn funcion de regresion linear \PYZsq{}lmplot\PYZsq{} solo para crear el diagrama de dispersion}
+          \PY{c+c1}{\PYZsh{} apagamos la regresion usando el parametro \PYZsq{}fit\PYZus{}reg=False\PYZsq{}}
+          
+          \PY{n}{sns}\PY{o}{.}\PY{n}{lmplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal length (cm)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal width (cm)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fit\PYZus{}reg}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{df\PYZus{}iris}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_54_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}196}]:} \PY{c+c1}{\PYZsh{} Con color}
+          \PY{n}{sns}\PY{o}{.}\PY{n}{lmplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal length (cm)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sepal width (cm)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fit\PYZus{}reg}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{df\PYZus{}iris}\PY{p}{,} \PY{n}{hue}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{target}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_55_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{itemize}
+\tightlist
+\item
+  Calcule los coeficientes de correlación de cada par de mediciones:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}197}]:} \PY{n}{df\PYZus{}iris}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}197}]:}                    sepal length (cm)  sepal width (cm)  petal length (cm)  \textbackslash{}
+          sepal length (cm)           1.000000         -0.109369           0.871754   
+          sepal width (cm)           -0.109369          1.000000          -0.420516   
+          petal length (cm)           0.871754         -0.420516           1.000000   
+          petal width (cm)            0.817954         -0.356544           0.962757   
+          target                      0.782561         -0.419446           0.949043   
+          
+                             petal width (cm)    target  
+          sepal length (cm)          0.817954  0.782561  
+          sepal width (cm)          -0.356544 -0.419446  
+          petal length (cm)          0.962757  0.949043  
+          petal width (cm)           1.000000  0.956464  
+          target                     0.956464  1.000000  
+\end{Verbatim}
+            
+    \textbf{Pregunta:}
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  ¿La longitud y el ancho del sépalo se correlacionan positiva o
+  negativamente en todas las flores?
+\end{enumerate}
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  ¿Están correlacionados positiva o negativamente dentro de cada
+  especie? Esta es una distinción esencial.
+\end{enumerate}
+
+    \begin{itemize}
+\tightlist
+\item
+  Viendo la grafica sin color: Notamos que la \textbf{'longitud del
+  sépalo (cm)'} y el \textbf{'ancho del sépalo (cm)'} parecen estar
+  \textbf{negativamente correlacionados} con un coeficient de
+  \textbf{-0.109369}. Y lo son, sobre \textbf{toda la población de
+  flores medidas}.
+\end{itemize}
+
+    \begin{itemize}
+\tightlist
+\item
+  \textbf{Pero no dentro de cada especie.} Viendo la grafica a colores
+  por ejemplo, la primera especie (color azul) vemos una correlacion
+  positiva.
+\end{itemize}
+
+    \begin{itemize}
+\tightlist
+\item
+  Para los interesados, esto se conoce como \textbf{la paradoja de
+  Simpson} y es esencial cuando se piensa en la inferencia causal.
+  Pueden leer más al respecto
+  \href{http://ftp.cs.ucla.edu/pub/stat_ser/r414.pdf}{aquí}.
+\end{itemize}
+
+    \begin{itemize}
+\tightlist
+\item
+  Calculamos los coeficientes de correlación de cada par de mediciones
+  dentro de cada especie:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}198}]:} \PY{n}{df\PYZus{}iris}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{target}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}198}]:}                           petal length (cm)  petal width (cm)  \textbackslash{}
+          target                                                          
+          0.0    petal length (cm)           1.000000          0.306308   
+                 petal width (cm)            0.306308          1.000000   
+                 sepal length (cm)           0.263874          0.279092   
+                 sepal width (cm)            0.176695          0.279973   
+          1.0    petal length (cm)           1.000000          0.786668   
+                 petal width (cm)            0.786668          1.000000   
+                 sepal length (cm)           0.754049          0.546461   
+                 sepal width (cm)            0.560522          0.663999   
+          2.0    petal length (cm)           1.000000          0.322108   
+                 petal width (cm)            0.322108          1.000000   
+                 sepal length (cm)           0.864225          0.281108   
+                 sepal width (cm)            0.401045          0.537728   
+          
+                                    sepal length (cm)  sepal width (cm)  
+          target                                                         
+          0.0    petal length (cm)           0.263874          0.176695  
+                 petal width (cm)            0.279092          0.279973  
+                 sepal length (cm)           1.000000          0.746780  
+                 sepal width (cm)            0.746780          1.000000  
+          1.0    petal length (cm)           0.754049          0.560522  
+                 petal width (cm)            0.546461          0.663999  
+                 sepal length (cm)           1.000000          0.525911  
+                 sepal width (cm)            0.525911          1.000000  
+          2.0    petal length (cm)           0.864225          0.401045  
+                 petal width (cm)            0.281108          0.537728  
+                 sepal length (cm)           1.000000          0.457228  
+                 sepal width (cm)            0.457228          1.000000  
+\end{Verbatim}
+            
+    Podemos confirmar que dentro de cada especie las correlaciones son
+positivas. Por ejemplo para \texttt{target\ 0.0} (objetivo 0.0) - la
+correlacion de \textbf{longitud de sepalo} vs \textbf{ancho de sepalo}
+es \textbf{0.746780}. Esta es una de la razones por la cual uno debe
+explorar el conjunto de datos los maximo posible.
+
+    \textbf{Resumen:}
+
+\begin{itemize}
+\tightlist
+\item
+  Se importaron los datos de las tendencias de Google y fueron revisados
+  brevemente;
+\item
+  Se ha discutido los datos y se convirtieron a la forma deseada para
+  prepararlos para el análisis.
+\item
+  Se ha verificado la serie temporal visualmente.
+\item
+  Se ha identificado tendencias de la serie temporal.
+\item
+  Se ha usado la diferenciación de primer orden de series de tiempo.
+\item
+  Hemos recordado el concepto de \textbf{correlacion}, como calcularla y
+  hemos aprendido sobre \emph{la paradoja de Simpson}
+\end{itemize}
+
+\textbf{A continuacion:}
+
+\begin{itemize}
+\tightlist
+\item
+  Se analizara la periodicidad de la serie de tiempo observando su
+  función de autocorrelación.
+\end{itemize}
+
+    \subsubsection{Correlación de Series de
+Tiempo}\label{correlaciuxf3n-de-series-de-tiempo}
+
+    \begin{itemize}
+\tightlist
+\item
+  Vamos a trazar todas las series de tiempo otra vez para recordar cómo
+  lucen:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}199}]:} \PY{n}{df}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{;}
+          
+          \PY{c+c1}{\PYZsh{} Cambiamos la etiqueta del eje\PYZhy{}x a \PYZdq{}Año\PYZdq{}}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{rc}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{legend}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)} 
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Año}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_70_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{itemize}
+\tightlist
+\item
+  Calculamos los coeficientes de correlación de todas estas series de
+  tiempo:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}200}]:} \PY{n}{df}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}200}]:}              dieta  gimnasio  finanzas
+          dieta     1.000000 -0.100764 -0.034639
+          gimnasio -0.100764  1.000000 -0.284279
+          finanzas -0.034639 -0.284279  1.000000
+\end{Verbatim}
+            
+    \begin{itemize}
+\tightlist
+\item
+  Podemos ver que \textbf{dieta} y \textbf{gimnasio} estan negativamente
+  correlacionadas (\textbf{-0.100764}). Es interesante porque, los
+  componentes \textbf{Estacionales} estan correlacionados, pero
+  \textbf{la tendencia} no lo esta. Hay una correlacion negativa en
+  \textbf{la tendencia} de \textbf{dieta} y \textbf{gimnasio}
+\end{itemize}
+
+    \begin{itemize}
+\tightlist
+\item
+  Ahora trazaremos las \textbf{diferencias de primer orden} de estas
+  series temporales (eliminando \textbf{la tendencia} puede revelar una
+  correlación en \textbf{la estacionalidad}):
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}201}]:} \PY{n}{df}\PY{o}{.}\PY{n}{diff}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{;}
+          
+          \PY{c+c1}{\PYZsh{} Cambiamos la etiqueta del eje\PYZhy{}x a \PYZdq{}Año\PYZdq{}}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{rc}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{legend}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)} 
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Año}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_75_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Podemos ver que los \textbf{componentes Estacionales} de \texttt{dieta}
+y \texttt{gimnasio} estan correlacionados.
+
+    \begin{itemize}
+\tightlist
+\item
+  Ahora calcularemos los \textbf{coeficientes de correlación} de las
+  \textbf{diferencias de primer orden} de estas series de tiempo
+  (eliminando \textbf{la tendencia} puede revelar una correlación en
+  \textbf{la estacionalidad}):
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}202}]:} \PY{n}{df}\PY{o}{.}\PY{n}{diff}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}202}]:}              dieta  gimnasio  finanzas
+          dieta     1.000000  0.758707  0.373828
+          gimnasio  0.758707  1.000000  0.301111
+          finanzas  0.373828  0.301111  1.000000
+\end{Verbatim}
+            
+    Habiendo removido la tendencia, y ahora con solamente los
+\textbf{componentes de estacionalidad}, los calculos confirman que
+\textbf{dieta} y \textbf{gimnasio} estan altamente correlacionados con
+un coeficiente de \textbf{0.758707}
+
+    \subsection{Autocorrelación}\label{autocorrelaciuxf3n}
+
+    Ahora que hemos profundizado en la correlación de variables y la
+correlación de series de tiempo, es hora de trazar la autocorrelación de
+la serie 'dieta': en el eje x tienes el desfase y en el eje y tienes la
+correlación entre la la serie de tiempo está consigo misma en ese
+retraso. Por ejemplo: si la serie de tiempo original se repite cada dos
+días, esperaría ver un aumento en la función de autocorrelación a los 2
+días.
+
+    \begin{itemize}
+\tightlist
+\item
+  Trazamos la función de \textbf{autocorrelación} de la serie de tiempo
+  \texttt{dieta}:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}203}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{rc}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{axes}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{labelsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)} 
+          \PY{n}{plt}\PY{o}{.}\PY{n}{rc}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{xtick}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{labelsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{rc}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ytick}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{labelsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}
+          \PY{n}{pd}\PY{o}{.}\PY{n}{plotting}\PY{o}{.}\PY{n}{autocorrelation\PYZus{}plot}\PY{p}{(}\PY{n}{dieta}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{green}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_83_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    De nuevo, hemos identificado la \texttt{Estacionalidad}
+\textbf{(repetitividad)} de la busqueda de la palabra \texttt{dieta} en
+Google cada 12 meses. Por ejemplo podemos ver maximos (picos) cada 12
+meses, es decir podemos ver esos maximos en un \texttt{lag}
+\textbf{(desfase)} de 24, 36, 48 , y asi sucesivamente.
+
+    \textbf{Resumen:}
+
+\begin{itemize}
+\tightlist
+\item
+  Se importaron los datos de las tendencias de Google y fueron revisados
+  brevemente;
+\item
+  Se ha discutido los datos y se convirtieron a la forma deseada para
+  prepararlos para el análisis.
+\item
+  Se ha verificado la serie temporal visualmente.
+\item
+  Se ha identificado tendencias de la serie temporal.
+\item
+  Se ha usado la diferenciación de primer orden de series de tiempo.
+\item
+  Hemos recordado el concepto de \textbf{correlacion}, como calcularla y
+  hemos aprendido sobre \emph{la paradoja de Simpson}
+\item
+  Se ha analizado la periodicidad de la serie de tiempos observando su
+  función de autocorrelación.
+\end{itemize}
+
+    En este código de Facebook en vivo a lo largo de la sesión, ha
+consultado los datos de las tendencias de Google de las palabras clave
+"dieta", "gimnasio" y miró de forma superficial "finanzas" para ver cómo
+varían con el tiempo. Para aquellos ansiosos científicos de datos, hay
+dos cosas que puedes hacer de inmediato:
+
+\begin{itemize}
+\tightlist
+\item
+  Observe y analice los datos columna 'finanzas' y luego informe lo que
+  ha encontrado;
+\item
+  Use el modelo ARIMA para hacer algunas predicciones de series
+  temporales sobre cómo serán estas tendencias de búsqueda en los
+  próximos años. Jason Brownlee en Machine Learning Mastery tiene un
+  estupendo tutorial sobre
+  \href{https://machinelearningmastery.com/arima-for-time-series-forecasting-with-python/}{modelo
+  ARIMA en Python}, y ademas \textbf{DataCamp} tiene un
+  \href{https://www.datacamp.com/courses/arima-modeling-with-r}{gran
+  curso sobre el modelo ARIMA usando R} y \textbf{DataCamp} también
+  tendra un curso de previsión Python Time Series funcionando este año.
+\end{itemize}
+
+    Para obtener más información sobre Pandas, pueden ver el curso de la
+pagina DataCamp:
+\href{https://www.datacamp.com/tracks/data-manipulation-with-python}{Manipulación
+de datos usando Python}. Y para obtener más información sobre
+manipulacion de series de tiempo con Pandas, pueden ver el curso:
+\href{https://www.datacamp.com/courses/manipulating-time-series-data-in-python}{Manipulando
+Datos en Series de Tiempo usando Python}.
+
+Si estás disfrutando de esta sesión, visita mi pagina de Facebook
+\href{https://www.facebook.com/pythonfordatascience}{Python Programming
+\& Data Science} y sígueme en Twitter:
+{[}@vmc62usa{]}(https://twitter.com/vmc62usa)
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
