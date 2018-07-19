@@ -1,4 +1,4 @@
-# Analisis de Tendencias durante la Resolucion de Año Nuevo
+# Analisis de Tendencias en Google Trends sobre Resoluciones de Año Nuevo
 Projecto de Ciencia de Datos analizando las busquedas de las palabras 'diet' y 'gym' en la pagina de Google Trends (Tendencias)
 
 ¿Hay más búsquedas en Google de los términos: diet (dieta), gym (gimnasio) y finance (finanzas) en Enero cuando todos estamos tratando de renovarnos con el inicio de un nuevo año?
